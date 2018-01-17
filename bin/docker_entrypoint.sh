@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -exuo pipefail
+set -exo pipefail
 
 BITCOIN_DIR=/bitcoin
 BITCOIN_CONF=${BITCOIN_DIR}/bitcoin.conf
@@ -57,7 +57,11 @@ EOF
 fi
 
 if [ $# -eq 0 ]; then
-  exec bitcoind -datadir=${BITCOIN_DIR} -conf=${BITCOIN_CONF} "${BTC_RUN_ARGS}"
+  if [ $BTC_RUN_ARGS -eq "" ]; then
+    exec bitcoind -datadir=${BITCOIN_DIR} -conf=${BITCOIN_CONF}
+  else
+    exec bitcoind -datadir=${BITCOIN_DIR} -conf=${BITCOIN_CONF} "${BTC_RUN_ARGS}"
+  fi
 else
   exec "$@"
 fi
