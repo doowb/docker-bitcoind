@@ -18,6 +18,15 @@ if [ ! -e "${BITCOIN_CONF}" ]; then
 # the wiki:
 #   https://en.bitcoin.it/wiki/Running_Bitcoin
 
+# set the data directory
+datadir=${BITCOIN_DIR}
+
+# set the db cache size
+dbcache=${BTC_DBCACHE:-1000}
+
+# testnet=1 tells bitcoind to use the testnet
+testnet=${BTC_TESTNET:-0}
+
 # server=1 tells Bitcoin-Qt and bitcoind to accept JSON-RPC commands
 server=1
 
